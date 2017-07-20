@@ -1,11 +1,17 @@
 html {
     background-color: black;
 }
+body {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
 .board {
     width: 500px;
     height: 500px;
     border: 2px solid white;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,4 +22,10 @@ html {
     width: 30%;
     border: 1px solid white;
     margin: 5px;
+}
+.scoreBoard{
+    color: white;
+    display: flex;
+    text-align: left;
+    border: 1px solid red;
 }
