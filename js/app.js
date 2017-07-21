@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // const board = document.querySelector(".board");
     const square = document.querySelectorAll(".board div");
-    const colors = ["red", "blue", "yellow", "green", "white", "hotpink"];
+    const colors = ["red", "blue", "yellow"];
+    const additional = ["purlpe", "green", "white", "hotpink"];
 
     //
     for (let i = 0; i < square.length; i++) {
@@ -24,8 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let col = square[i].getAttribute("color");
             arr.push(col);
         }
-        console.log(arr);
-
+        // console.log(arr);
 
         function changeColor() {
             const html = document.querySelector("html");
@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if ( arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === arr[3]
                 && arr[0] === arr[4] && arr[0] === arr[5] && arr[0] === arr[6]
                 && arr[0] === arr[7] && arr[0] === arr[8]){
+                //add color if board finished
+                colors.push.apply(colors,additional);
                 return changeColor();
             }else{
                 return false;
