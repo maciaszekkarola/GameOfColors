@@ -26,13 +26,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         console.log(arr);
 
+
+        function changeColor() {
+            const html = document.querySelector("html");
+            html.style.backgroundColor = "navy";
+        }
+
         for (let i = 0; i < arr.length; i++) {
-            if (arr[0] === "red" || arr[1] === "red") {
-                alert("wszystkie czerwone");
+            if ( arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === arr[3]
+                && arr[0] === arr[4] && arr[0] === arr[5] && arr[0] === arr[6]
+                && arr[0] === arr[7] && arr[0] === arr[8]){
+                return changeColor();
             }else{
-                false;
+                return false;
             }
         }
+
 
 
     })
