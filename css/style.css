@@ -28,3 +28,6 @@ body {
     text-align: left;
     border: 1px solid red;
 }
+.middle {
+    background-color: white;
+}

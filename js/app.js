@@ -4,10 +4,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const square = document.querySelectorAll(".board div");
     //basic board
     const colors = ["red", "blue", "yellow"];
-    const levelUp = ["purple", "green", "white", "hotpink"];
+    const level2 = ["purple"];
+    const level3 = ["green"];
+    const level4 = ["white"];
+    const level5 = ["hotpink"];
+
     const button = document.querySelector(".check");
+    const result = document.querySelector(".result");
+    const middleSq = document.querySelector(".middle");
 
     let level = 1;
+    result.innerHTML = level;
+
 
     //kolorowanie divów przez event
     for (let i = 0; i < square.length; i++) {
@@ -31,10 +39,12 @@ document.addEventListener("DOMContentLoaded", function() {
     function changeColor() {
         const html = document.querySelector("html");
         html.style.backgroundColor = "navy";
+        middleSq.style.backgroundColor = "white";
+        middleSq.setAttribute("color", "white");
+
     }
 
-    //check if it is correct
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function(event) {
         event.preventDefault();
             const arr = [];
             for (let i = 0; i < square.length; i++) {
@@ -42,23 +52,29 @@ document.addEventListener("DOMContentLoaded", function() {
                 arr.push(color);
             }
 
-            for (let i = 0; i < arr.length; i++) {
+            if (level === 1) {
+                colors.push.apply(colors,level2);
+            }else if (level === 2) {
+                colors.push.apply(colors,level3);
+            }else if (level === 3) {
+                colors.push.apply(colors,level4);
+            }else if (level === 4) {
+                colors.push("hotpink");
+            }
 
+            for (let i = 0; i < arr.length; i++) {
                 if (arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === arr[3]
                     && arr[0] === arr[4] && arr[0] === arr[5] && arr[0] === arr[6]
                     && arr[0] === arr[7] && arr[0] === arr[8]){
-                    //add color and increase level if board is finished
-                    colors.push.apply(colors,levelUp);
                     reset();
                     changeColor();
+
                 }else{
                     return false;
                 }
             }
-            // level++;
-            console.log(level, "level po buttonie");
-            const result = document.querySelector(".result");
-            level = level + 1;
+            console.log(colors);
+            level++;
             result.innerHTML = level;
 
             return level;
