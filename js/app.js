@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const button = document.querySelector(".check");
     const result = document.querySelector(".result");
     const middleSq = document.querySelector(".middle");
+    const miniBoard = document.querySelector(".miniBoard");
+    const miniSquare = document.querySelectorAll(".miniBoard div");
+
+    console.log(miniSquare);
+
 
     let level = 1;
     result.innerHTML = level;
@@ -35,15 +40,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    //change backgroundColor
+    //change Color
     function changeColor() {
-        const html = document.querySelector("html");
-        html.style.backgroundColor = "navy";
         middleSq.style.backgroundColor = "white";
         middleSq.setAttribute("color", "white");
-
     }
 
+    //miniBoard randomColor
+    function colorMiniBoard() {
+        for (let i = 0; i < miniSquare.length; i++) {
+            let index = Math.floor(Math.random() * colors.length);
+            miniSquare[i].style.backgroundColor = colors[index];
+            miniSquare[i].setAttribute("color", colors[index]);
+        }
+    }
+    colorMiniBoard();
+
+    //main event
     button.addEventListener("click", function(event) {
         event.preventDefault();
             const arr = [];
@@ -59,7 +72,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }else if (level === 3) {
                 colors.push.apply(colors,level4);
             }else if (level === 4) {
-                colors.push("hotpink");
+                colors.push.apply(colors, level5);
+            }else if ( level >= 5){
+                miniBoard.style.visibility = "visible";
+
             }
 
             for (let i = 0; i < arr.length; i++) {
@@ -68,16 +84,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     && arr[0] === arr[7] && arr[0] === arr[8]){
                     reset();
                     changeColor();
-
                 }else{
                     return false;
                 }
             }
-            console.log(colors);
+            // console.log(colors);
             level++;
             result.innerHTML = level;
-
-            return level;
+        return level;
     });
 
 
