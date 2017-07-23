@@ -40,7 +40,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /*visibility: hidden;*/
+    visibility: hidden;
 }
 
 .miniBoard div {
