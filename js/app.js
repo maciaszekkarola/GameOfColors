@@ -2,11 +2,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // const board = document.querySelector(".board");
     const square = document.querySelectorAll(".board div");
-    const colors = ["red", "blue", "yellow"];
-    const level2 = ["purple"];
-    const level3 = ["green"];
-    const level4 = ["white"];
-    const level5 = ["hotpink"];
+    // const colors = ["red", "blue", "yellow"];
+    const colors = ["red"];
+
+    const level2 = ["red"];
+    const level3 = ["red"];
+    // const level4 = ["white"];
+    // const level5 = ["hotpink"];
 
     const button = document.querySelector(".check");
     const result = document.querySelector(".result");
@@ -59,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const miniColorSet = colorMiniBoard();
 
 
-
     // main game function
     function game() {
         const arr = [];
@@ -73,19 +74,19 @@ document.addEventListener("DOMContentLoaded", function() {
             colors.push.apply(colors,level2);
         }else if (level === 3) {
             colors.push.apply(colors,level3);
-        }else if (level === 4) {
-            colors.push.apply(colors,level4);
-        }else if (level === 5) {
-            colors.push.apply(colors, level5);
-        }else if (level > 5){
+        // }else if (level === 4) {
+        //     colors.push.apply(colors,level4);
+        // }else if (level === 5) {
+        //     colors.push.apply(colors, level5);
+    }else if (level > 3 && level <= 6){
             miniBoard.style.visibility = "visible";
             equal();
             reset();
             changeColor();
             colorMiniBoard();
-            level++;
-        }else if (level === 6){
-            alert("Go back to work!");
+            console.log(level + " level od 3 wzwyż");
+        }else if (level === 7){
+            console.log("game over time!");
         }
 
         for (let i = 0; i < arr.length; i++) {
@@ -100,9 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         level++;
         result.innerHTML = level;
-        console.log(arr);
 
-        //rules from level 5 up
+        //rules from upper level up
         function equal(){
             for(let i = 0 ; i < arr.length; i++){
                 for(let j = 0; j < miniColorSet.length; j++){
@@ -117,25 +117,13 @@ document.addEventListener("DOMContentLoaded", function() {
     return arr;
     }
 
-
-
     //main event
     button.addEventListener("click", function(event) {
         event.preventDefault();
         game();
+        console.log(level + " level w buttonie po kliknięciu check");
     });
     const bigColorSet = game();
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
