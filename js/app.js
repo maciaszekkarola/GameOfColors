@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // const board = document.querySelector(".board");
+    const board = document.querySelector(".board");
     const square = document.querySelectorAll(".board div");
     // const colors = ["red", "blue", "yellow"];
     const colors = ["red"];
@@ -60,6 +60,12 @@ document.addEventListener("DOMContentLoaded", function() {
     colorMiniBoard();
     const miniColorSet = colorMiniBoard();
 
+    function gameOver() {
+        board.style.opacity = ".4";
+        button.disabled = true;
+        //message pops out "go to work!"
+
+    }
 
     // main game function
     function game() {
@@ -86,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
             colorMiniBoard();
             console.log(level + " level od 3 wzwyż");
         }else if (level === 7){
-            console.log("game over time!");
+            gameOver();
         }
 
         for (let i = 0; i < arr.length; i++) {
