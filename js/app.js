@@ -20,6 +20,22 @@ document.addEventListener("DOMContentLoaded", function() {
     result.innerHTML = level;
 
 
+    //modalconst modal = document.querySelector(".modal");
+    const close = document.querySelector(".close");
+    const modal = document.querySelector(".modal");
+
+
+    window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    })
+    close.addEventListener("click", function() {
+        modal.style.display = "none";
+    })
+
+
+
     //kolorowanie divów przez event
     for (let i = 0; i < square.length; i++) {
         square[i].addEventListener("mouseover", function() {
@@ -63,8 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function gameOver() {
         board.style.opacity = ".4";
         button.disabled = true;
-        //message pops out "go to work!"
-
+        modal.style.display = "block";
     }
 
     // main game function
