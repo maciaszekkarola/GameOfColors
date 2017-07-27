@@ -2,26 +2,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const board = document.querySelector(".board");
     const square = document.querySelectorAll(".board div");
-    // const colors = ["red", "blue", "yellow"];
-    const colors = ["red"];
+    const colors = ["#ff6666", "#6373ff", "#fcf262"]; //red, blue, yellow
 
-    const level2 = ["blue"];
-    const level3 = ["green"];
-    const level4 = ["white"];
-    const level5 = ["hotpink"];
+    const level3 = ["#71fcf3"]; //lightblue
+    const level4 = ["#f0e8fc"]; //white
+    const level5 = ["#b0ff56"]; //green
+    const level6 = ["#ff70b7"]; //pink
 
     const button = document.querySelector(".check");
     const result = document.querySelector(".result");
     const middleSq = document.querySelector(".middle");
-    const miniBoard = document.querySelector(".miniBoard");
-    const miniSquare = document.querySelectorAll(".miniBoard div");
+    const extraColor = document.querySelector(".extraColor");
 
-    let level = 0;
+    let level = 1;
     update();
     function update() {
         result.innerHTML = level;
     }
-
 
     //modal
     const close = document.querySelector(".close");
@@ -53,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
     //reset colors
     function reset() {
         for (let i = 0; i < square.length; i++) {
-            square[i].style.backgroundColor = "black";
+            square[i].style.backgroundColor = "#202021";
         }
-
+        changeColor();
     }
 
     //change Color
@@ -64,21 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
         middleSq.setAttribute("color", "white");
     }
 
-    //miniBoard randomColor
-    function colorMiniBoard() {
-        const miniArr = [];
-        for (let i = 0; i < miniSquare.length; i++) {
-            let index = Math.floor(Math.random() * colors.length);
-            miniSquare[i].style.backgroundColor = colors[index];
-            miniSquare[i].setAttribute("color", colors[index]);
-            let miniSquareColor = miniSquare[i].getAttribute("color");
-            miniArr.push(miniSquareColor);
-        }
-        return miniArr;
-    }
-
-    colorMiniBoard();
-    const miniColorSet = colorMiniBoard();
 
     function gameOver() {
         board.style.opacity = ".4";
@@ -93,21 +75,21 @@ document.addEventListener("DOMContentLoaded", function() {
             let color = square[i].getAttribute("color");
             arr.push(color);
         }
+
+        //when you are on level
         if (level === 2) {
-            colors.push.apply(colors,level2);
-        }else if (level === 3) {
             colors.push.apply(colors,level3);
-        }else if (level === 4) {
+            extraColor.style.backgroundColor = level3[0];
+        }else if (level === 3) {
             colors.push.apply(colors,level4);
+            extraColor.style.backgroundColor = level4[0];
+        }else if (level === 4) {
+            colors.push.apply(colors,level5);
+            extraColor.style.backgroundColor = level5[0];
         }else if (level === 5) {
-            colors.push.apply(colors, level5);
-        }else if (level > 3 && level <= 6){
-            miniBoard.style.visibility = "visible";
-            equal();
-            reset();
-            changeColor();
-            colorMiniBoard();
-        }else if (level === 8){
+            colors.push.apply(colors, level6);
+            extraColor.style.backgroundColor = level6[0];
+        }else if (level === 6 ){
             gameOver();
         }
 
@@ -116,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 && arr[0] === arr[4] && arr[0] === arr[5] && arr[0] === arr[6]
                 && arr[0] === arr[7] && arr[0] === arr[8]){
                 reset();
-                changeColor();
                 update();
             }else{
                 return false;
@@ -124,30 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         level++;
         update()
-
-        // rules from upper level up
-        function equal(){
-            // level++;
-            for(let i = 0 ; i < arr.length; i++){
-                for(let j = 0; j < miniColorSet.length; j++){
-                    if( arr[i] === miniColorSet[i]){
-                        console.log("hiphip!");
-                    }else{
-                        return false;
-                    }
-                }
-            }
-        }
-    return arr;
     }
 
     //main event
     button.addEventListener("click", function(event) {
         event.preventDefault();
         game();
-        // level++; nie!
     });
-    const bigColorSet = game();
 
 
 });
