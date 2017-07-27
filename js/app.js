@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    //kolorowanie divów przez event
+    //color squares
     for (let i = 0; i < square.length; i++) {
         square[i].addEventListener("mouseover", function() {
             event.preventDefault();
@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function() {
             arr.push(color);
         }
 
-        //when you are on level
         if (level === 2) {
             colors.push.apply(colors,level3);
             extraColor.style.backgroundColor = level3[0];
@@ -107,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
         update()
     }
 
-    //main event
     button.addEventListener("click", function(event) {
         event.preventDefault();
         game();
